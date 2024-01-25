@@ -1,3 +1,4 @@
+import 'package:connect_firebase/qrscan.dart';
 import 'package:connect_firebase/web.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,8 +44,9 @@ class MyHomePage extends StatelessWidget {
       //   title: Text(title),
       //   automaticallyImplyLeading: false, // Deshabilita el botón de retroceso predeterminado
       // ),
-      // body: DoorStateWidget(),
-      body: WebPage(),
+      body: Login(),
+      // body: QRScanPage(),
+      // body: WebPage(),
     );
   }
 }

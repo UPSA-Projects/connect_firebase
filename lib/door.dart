@@ -1,3 +1,4 @@
+import 'package:connect_firebase/qrscan.dart';
 import 'package:connect_firebase/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -31,6 +32,19 @@ class DoorStateWidget extends StatelessWidget {
               );
             },
           ),
+          IconButton(
+            icon: Icon(Icons.qr_code),
+            onPressed: () {
+              // Navega a la página QRScanPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => QRScanPage(), // Asegúrate de tener este constructor en QRScanPage
+                ),
+              );
+            },
+          ),
+
         ],
       ),
       body: StreamBuilder<DocumentSnapshot>(
