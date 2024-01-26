@@ -45,18 +45,13 @@ class _PasswordEntryGuestState extends State<PasswordEntryGuest> {
                   // Enviar la contraseña a la base de datos
                   bool isAGuest = await DatabaseService().sendPassword(widget.groupId, widget.email, password);
 
-                  // Ir a door
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => DoorStateWidget(groupId: '', email: '',),
-                  //   ),
-                  // );
-                  Navigator.popUntil(context, (route) => route.isFirst);
-
-                  if (isAGuest) {
+                  if (isAGuest == true) {
                     enviarComando("0");
                     print('CONTRA CORRECTA !!!');
+
+                    Navigator.popUntil(context, (route) {
+                      return route.settings.name == '/door';
+                    });
 
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(

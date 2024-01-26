@@ -40,7 +40,8 @@ class DoorStateWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => QRScanPage(email: email), // Asegúrate de tener este constructor en QRScanPage
+                  builder: (context) => QRScanPage(email: email),
+                  settings: RouteSettings(name: '/door')
                 ),
               );
             },
