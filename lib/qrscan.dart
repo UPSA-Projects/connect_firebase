@@ -2,14 +2,18 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
+import 'guest.dart';
+
 class QRScanPage extends StatefulWidget {
-  const QRScanPage({Key? key}) : super(key: key);
+  final String email;
+  const QRScanPage({Key? key, required this.email}) : super(key: key);
 
   @override
   State<QRScanPage> createState() => _QRScanPageState();
 }
 
 class _QRScanPageState extends State<QRScanPage> {
+
   MobileScannerController cameraController = MobileScannerController();
 
   bool qrCodeReadSuccesfully = false;
@@ -75,7 +79,7 @@ class _QRScanPageState extends State<QRScanPage> {
           log('QR Code detected');
           log(capture.barcodes.last.rawValue!);
           if (!mounted) return;
-          if (capture.barcodes.last.rawValue! == 'PromoUPSA FAI 2023') {
+          if (capture.barcodes.last.rawValue! != 'PromoUPSA FAI 2023') {
             setState(() {
               qrCodeReadSuccesfully = true;
             });
@@ -84,6 +88,15 @@ class _QRScanPageState extends State<QRScanPage> {
             log('I scanned ${capture.barcodes.last.rawValue!}');
             if (mounted) {
               // context.replace('/group-stage-page');
+
+              // Ir a QR
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PasswordEntryGuest(groupId: capture.barcodes.last.rawValue!, email: widget.email),
+                ),
+              );
+
             }
           }
         },

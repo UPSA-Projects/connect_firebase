@@ -47,4 +47,30 @@ class DatabaseService {
       print('Error al actualizar el campo "door": $e');
     }
   }
+
+  // Método para enviar la contraseña a la base de datos
+  Future<bool> sendPassword(String idGroup, String email, String password) async {
+    try {
+      // Referencia a la colección 'Group'
+      DocumentReference groupCollectionId = FirebaseFirestore.instance.collection('group').doc(idGroup);
+      // Referecnai a la coleccion guest
+      CollectionReference guestsCollection = groupCollectionId.collection('guest');
+
+      // Realizar una consulta para encontrar documentos con el email y la contraseña proporcionados
+      QuerySnapshot<Object?> querySnapshot = await guestsCollection
+          .where('email', isEqualTo: email)
+          .where('password', isEqualTo: password)
+          .get();
+
+      // Verificar si se encontraron documentos
+      if (querySnapshot.docs.isNotEmpty) {
+        // Las credenciales son válidas
+        return true;
+      }
+      return false;
+    } catch (e) {
+      print('Error al enviar campo contrasena: $e');
+      return false;
+    }
+  }
 }

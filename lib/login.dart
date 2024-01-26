@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DoorStateWidget(groupId: groupId,),
+                      builder: (context) => DoorStateWidget(groupId: groupId, email: _emailController.text),
                     ),
                   );
                 } else {

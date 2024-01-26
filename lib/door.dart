@@ -8,7 +8,8 @@ import 'login.dart';
 
 class DoorStateWidget extends StatelessWidget {
   final String? groupId;
-  const DoorStateWidget({super.key, required this.groupId});
+  final String email;
+  const DoorStateWidget({super.key, required this.groupId, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class DoorStateWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => QRScanPage(), // Asegúrate de tener este constructor en QRScanPage
+                  builder: (context) => QRScanPage(email: email), // Asegúrate de tener este constructor en QRScanPage
                 ),
               );
             },
