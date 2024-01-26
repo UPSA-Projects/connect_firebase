@@ -46,7 +46,7 @@ class _PasswordEntryGuestState extends State<PasswordEntryGuest> {
                   bool isAGuest = await DatabaseService().sendPassword(widget.groupId, widget.email, password);
 
                   if (isAGuest == true) {
-                    enviarComando("0");
+                    enviarComando("3");
                     print('CONTRA CORRECTA !!!');
 
                     Navigator.popUntil(context, (route) {
